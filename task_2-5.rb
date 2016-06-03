@@ -5,7 +5,7 @@ month = gets.to_i
 puts "Введите год:"
 year = gets.to_i
 
-#считаем количество високосных дней в введенном году
+#Проверяем  год на високосный
 check_year = year
 vis_day = 0 
 	if  (check_year.modulo(4) == 0 && check_year.modulo(100) != 0 && month  > 3) || (check_year.modulo(400) == 0 && month  > 3)
