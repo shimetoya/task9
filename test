@@ -1,0 +1,11 @@
+while product != "stop" do
+puts "Введите название товара:"
+product = gets
+puts "Введите цену за единицу:"
+price = gets.to_f
+puts "Введите количество купленного товара:"
+amt = gets.to_f
+end
+
+result =  {product: [price, amt]}
+puts result

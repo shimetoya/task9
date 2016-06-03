@@ -8,14 +8,11 @@ year = gets.to_i
 #считаем количество високосных дней в введенном году
 check_year = year
 vis_day = 0 
-while check_year.to_i > 1 do
-	if  (check_year.modulo(4) == 0 && check_year.modulo(100) != 0) || check_year.modulo(400) == 0
+	if  (check_year.modulo(4) == 0 && check_year.modulo(100) != 0 && month  > 3) || (check_year.modulo(400) == 0 && month  > 3)
 		vis_day += 1    
 	end
-	check_year -= 1
-end
 
-#считаем количество дней от началагода до введенного месяца
+#считаем количество дней от начала года до введенного месяца
 k = 0
 m1 = month - 2
 arr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -26,5 +23,5 @@ while m1 >= 0 do
 	m1 = m1 - 1
 end
 
-count = year.to_i * 365 - 365 - 1 + vis_day.to_i + k.to_i + date.to_i # Отнимаем -365 и -1 так так первый год и день не считаем
+count = vis_day.to_i + k + date 
 puts "Порядковый номер даты #{date.to_i}.#{month.to_i}.#{year.to_i}, начиная отсчет с начала года: #{count}"
