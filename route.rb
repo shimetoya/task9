@@ -1,8 +1,4 @@
 class Route
-	#attr_accessor :speed
-	#attr_accessor :route
-	#attr_accessor :stations
-	#attr_accessor :name_of_station
 	@stations = Array.new
 	def initialize(first_station, last_station, stations=0)
 		puts "Маршрут лежит от станции #{first_station} до станции #{last_station}."
