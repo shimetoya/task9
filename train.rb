@@ -1,15 +1,12 @@
 class Train
-attr_accessor :speed
-attr_accessor :route
-attr_accessor :stations
-attr_accessor :name_of_station
 attr_accessor :type
-attr_accessor :name
-	def initialize(name, type, amount_railway_carriage)
-		puts "Номер поезда: #{name}, тип поезда: #{type}, количество вагонов у поезда: #{amount_railway_carriage}"
-		@name = name
+attr_accessor :number
+	def initialize(number, type, amount_railway_carriage)
+		puts "Номер поезда: #{number}, тип поезда: #{type}, количество вагонов у поезда: #{amount_railway_carriage}"
+		@number = number
 		@type = type
 		@amount_railway_carriage = amount_railway_carriage
+		@speed = 0
 	end
 	def gather_speed
 		@speed = 60
@@ -34,12 +31,20 @@ attr_accessor :name
 			puts "Невозможно отцепить вагон, пока поезд движется!"	
 		end
 	end
-	def route
-		puts "Поезд #{name} находится на станции: #{@current_station}"
+	def route=(route)
+		@route = route
+		@cur_station_index = 0
+		@current_station = route.stations[@cur_station_index]
+		puts "Поезд #{@number} находится на станции: #{@current_station}"
 	end
-	def change_station(name_of_station)
-		@current_station = name_of_station
-		puts "Поезд переместился на станцию: #{@current_station}!"
+	def goto_next_station
+		if route.stations[@cur_station_index] == route.stations.last
+			puts "Поезд находится на конечной станции: #{@current_station}!"
+		else
+			@cur_station_index += 1
+			@current_station = route.stations[@cur_station_index]
+			puts "Поезд переместился на станцию: #{@current_station}!"
+		end
 	end
 	def show_station(route)
 		puts "Список всех станций: #{route.stations}"
