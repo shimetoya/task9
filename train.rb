@@ -1,6 +1,7 @@
 class Train
 attr_accessor :type
 attr_accessor :number
+attr_accessor :station
 	def initialize(number, type, amount_railway_carriage)
 		puts "Номер поезда: #{number}, тип поезда: #{type}, количество вагонов у поезда: #{amount_railway_carriage}"
 		@number = number
@@ -35,18 +36,21 @@ attr_accessor :number
 		@route = route
 		@cur_station_index = 0
 		@current_station = route.stations[@cur_station_index]
-		puts "Поезд #{@number} находится на станции: #{@current_station}"
+		@current_station.get_train(self)
+		puts "Поезд #{@number} находится на станции: #{@current_station.station}"
 	end
 	def goto_next_station
-		if route.stations[@cur_station_index] == route.stations.last
-			puts "Поезд находится на конечной станции: #{@current_station}!"
+		if @route.stations[@cur_station_index].station == @route.stations.last.station
+			puts "Поезд находится на конечной станции: #{@current_station.station}!"
 		else
+			@current_station.sent_train(self)
 			@cur_station_index += 1
-			@current_station = route.stations[@cur_station_index]
-			puts "Поезд переместился на станцию: #{@current_station}!"
+			@current_station = @route.stations[@cur_station_index]
+			@current_station.get_train(self)
+			puts "Поезд переместился на станцию: #{@current_station.station}!"
 		end
 	end
 	def show_station(route)
-		puts "Список всех станций: #{route.stations}"
+		puts "Показать текущую станцию: #{@current_station.station}"
 	end
 end
