@@ -17,8 +17,8 @@ class Route
 	def show_stations
 		puts "Список всех станций:"
 		for rail in @stations do
-			print "#{rail.station}, " 
+			print "#{rail.station}," 
 		end
 		puts " "
-  end
-end  
+	end
+end
