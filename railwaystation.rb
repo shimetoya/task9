@@ -26,5 +26,5 @@ class RailwayStation
 	def sent_train(train)
 		puts "Ушел поезд: #{train.number}"
 		@trains.delete(train)
-	end	  
+  end	  
 end

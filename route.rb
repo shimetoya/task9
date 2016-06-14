@@ -20,5 +20,5 @@ class Route
 			print "#{rail.station}, " 
 		end
 		puts " "
-	end
+  end
 end  
