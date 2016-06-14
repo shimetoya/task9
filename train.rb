@@ -50,7 +50,23 @@ attr_accessor :station
 			puts "Поезд переместился на станцию: #{@current_station.station}!"
 		end
 	end
-	def show_station(route)
+	def show_station
 		puts "Показать текущую станцию: #{@current_station.station}"
+	end
+	def show_prev_station
+		if @current_station.station == @route.stations.first.station
+				puts "Предыдущей станции в маршруте нет, поезд находится на первой станции: #{@current_station.station}!"
+		else
+				@prev_station = @route.stations[@cur_station_index - 1]
+				puts "Показать предыдущую станцию: #{@prev_station.station}"
+		end
+	end
+	def show_next_station
+		if @current_station.station == @route.stations.last.station
+				puts "Следующей станции в маршруте нет, поезд находится на конечной станции: #{@current_station.station}!"
+		else
+				@next_station = @route.stations[@cur_station_index + 1]
+				puts "Показать следующую станцию: #{@next_station.station}"
+		end
 	end
 end
