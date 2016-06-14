@@ -31,7 +31,7 @@ attr_accessor :station
 		else
 			puts "Невозможно отцепить вагон, пока поезд движется!"	
 		end
-	end
+	end  
 	def route=(route)
 		@route = route
 		@cur_station_index = 0
