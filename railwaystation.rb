@@ -1,10 +1,10 @@
 class RailwayStation
-		attr_accessor :station
+	attr_accessor :station
 	def initialize(station)
-			puts "Станция называется: #{station}"
-			@station = station
-			@current_station = station
-			@trains = []
+		puts "Станция называется: #{station}"
+		@station = station
+		@current_station = station
+		@trains = []
 	end
 	def get_train(train)
 		@trains << train
@@ -13,9 +13,9 @@ class RailwayStation
 	def current_train
 		puts "Cписок всех поездов на станции, находящиеся в текущий момент:"
 		for number in @trains do
-    	print "#{number.number}, #{number.type}, " 
+			print "#{number.number}, #{number.type}, " 
 		end
-			puts " "
+		puts " "
 	end
 	def current_train_with_type_pass
 		@trains.each {|number| puts "Cписок всех поездов пассажирского типана станции, находящиеся в текущий момент:: #{number.number}, #{number.type}" if number.type == 'pass' }

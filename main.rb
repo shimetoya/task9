@@ -28,7 +28,7 @@ when 'add station'
 	station = gets.chomp
 	route.add_station(station)
 when 'add train'
-  puts "Введите номер поезда:"
+ 	puts "Введите номер поезда:"
 	number = gets.chomp
 	puts "Введите тип поезда ('PassangerTrain' / 'CargoTrain'):"
 	type = gets.chomp.to_s
@@ -45,23 +45,23 @@ when 'add train'
 		train.add_train(train)
 	end
 when 'add car'
-	  if train.instance_of? CargoTrain
-	    cargo_train.add_car(CargoCar.new)
-	  elsif train.instance_of? PassangerTrain
-	  	passanger_train.add_car(PassangerCar.new)
-	  else
-	  	puts "Type's error!"
-	  end	    	
+	if train.instance_of? CargoTrain
+		cargo_train.add_car(CargoCar.new)
+	elsif train.instance_of? PassangerTrain
+		passanger_train.add_car(PassangerCar.new)
+	else
+		puts "Type's error!"
+	end	    	
 when 'deduct car'
-			@amount_railway_carriage -= 1
+	@amount_railway_carriage -= 1
 when 'stationlist'
-  route.show_stations
+	route.show_stations
 when 'trainlist'
-  @passanger_train.trainlist
+	@passanger_train.trainlist
 when 'exit'
 	end_program = true
 else
-  puts "Sorry, I didn't understand you."
+	puts "Sorry, I didn't understand you."
 	end_program = true
 end
 end

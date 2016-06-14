@@ -15,10 +15,10 @@ class Route
 		@stations.delete(rail)
 	end
 	def show_stations
-			puts "Список всех станций:"
+		puts "Список всех станций:"
 		for rail in @stations do
-    	print "#{rail.station}, " 
+			print "#{rail.station}, " 
 		end
-			puts " "
+		puts " "
 	end
 end  
