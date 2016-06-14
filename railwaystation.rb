@@ -12,7 +12,7 @@ class RailwayStation
 	end
 	def current_train
 		puts "Cписок всех поездов на станции, находящиеся в текущий момент:"
-			for number in @trains do
+		for number in @trains do
     	print "#{number.number}, #{number.type}, " 
 		end
 			puts " "
