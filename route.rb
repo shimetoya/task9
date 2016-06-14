@@ -6,21 +6,18 @@ class Route
 		@first_station = RailwayStation.new(first_station)
 		@last_station = RailwayStation.new(last_station)
 		@stations = [@first_station, @last_station]
-		
 	end
-	def new_station(station)
-		@station = RailwayStation.new(station)
+	def add_station(rail)
+		@stations.insert(1, rail)
+		puts "Добавлена станция: #{rail.station}"
 	end
-	def add_station(station)
-		@stations.insert(1, @station)
-	end
-	def delete_station(station)
-		@stations.delete(@station)
+	def delete_station(rail)
+		@stations.delete(rail)
 	end
 	def show_stations
 			puts "Список всех станций:"
-		for station in @stations do
-    	print "#{station.station}, " 
+		for rail in @stations do
+    	print "#{rail.station}, " 
 		end
 			puts " "
 	end
