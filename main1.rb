@@ -3,25 +3,26 @@ require_relative 'route'
 require_relative 'railwaystation'
 require_relative 'cargotrain'
 require_relative 'passangertrain'
+require_relative 'car'
 require_relative 'passangercar'
 require_relative 'cargocar'
-require_relative 'car'
-train = Train.new(11, 3)
+train = Train.new(11,'p', 3)
 route = Route.new('First Station','Last Station')
 rail = RailwayStation.new('Second Station')
+car = Car.new
 passanger_train = PassangerTrain.new(1, 3)
 cargo_train = CargoTrain.new(2, 5)
-
 
 puts "What would you like to do?"
 puts "-- Type 'add station' to add a station."
 puts "-- Type 'add train' to add a train."
 puts "-- Type 'add car' to add a car."
-puts "-- Type 'deduct railway carriage' to deduct a railway carriage."
+puts "-- Type 'deduct car' to deduct a car."
 puts "-- Type 'train on station' to add a train on the station."
 puts "-- Type 'stationlist' to display all stations."
 puts "-- Type 'trainlist' to display all trains."
 puts "-- Type 'exit' to exit."
+
 end_program = false
 while(!end_program)
 choice = gets.chomp.downcase
@@ -38,27 +39,35 @@ when 'add train'
 	type = gets.chomp
 	puts "Введите количество вагонов в поезде:"
 	amount = gets.chomp.to_i
-	if type == 'p'
-		amount_passanger_car = amount
-		passanger_train = PassangerTrain.new(number, amount)
-		passanger_train.add_train(passanger_train)
-	elsif type == 'c'
-		amount_cargo_car = amount
-		cargo_train = CargoTrain.new(number, amount)
-		cargo_train.add_train(cargo_train)
-	else
-		puts "Unknown type"
-	end
+  if type == 'p'
+    @amount_passanger_car = amount
+    passanger_train = PassangerTrain.new(number, @amount_passanger_car)
+    rail.get_train(passanger_train)
+    @train = passanger_train
+  elsif type == 'c'
+    amount_cargo_car = amount
+    cargo_train = CargoTrain.new(number, amount_cargo_car)
+    rail.get_train(cargo_train)
+    @train = cargo_train
+  else
+    puts "Unknown type"
+  end
 when 'add car'
-	if train.instance_of? CargoTrain
-		cargo_train.add_car(CargoCar.new)
-	elsif train.instance_of? PassangerTrain
-		passanger_train.add_car(PassangerCar.new)
+	if @train.type == CargoTrain
+    cargo_train.add_car(cargo_train)
+	elsif @train.type == PassangerTrain
+    passanger_train.add_car(passanger_train)
 	else
 		puts "Type's error!"
 	end	    	
 when 'deduct car'
-	@amount_railway_carriage -= 1
+  if @train.type == CargoTrain
+    cargo_train.deduct_car(cargo_train)
+  elsif @train.type == PassangerTrain
+    passanger_train.deduct_car(passanger_train)
+  else
+    puts "Type's error!"
+  end     
 when 'train on station'
 	if type == 'p'
 		passanger_train.route=(route)
@@ -70,7 +79,7 @@ when 'train on station'
 when 'stationlist'
 	route.show_stations
 when 'trainlist'
-	train.trainlist 
+	rail.current_train
 when 'exit'
 	end_program = true
 else

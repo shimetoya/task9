@@ -1,6 +1,6 @@
-class PassangerCar 
-  def initialize(amount_passanger_car)
-    @amount_passanger_car = amount_passanger_car
+class PassangerCar < Car
+  def initialize(amount)
+    @amount = amount
     type = PassangerTrain		
   end
 end

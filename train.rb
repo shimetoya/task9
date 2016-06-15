@@ -1,13 +1,16 @@
 class Train
   attr_accessor :type
   attr_accessor :number
+  attr_accessor :amount
   attr_accessor :station
-  def initialize(number, type, amount_railway_carriage)
-    puts "Номер поезда: #{number}, тип поезда: #{type}, количество вагонов у поезда: #{amount_railway_carriage}"
+  def initialize(number, type, amount)
+    puts "Номер поезда: #{number}, тип поезда: #{type}, количество вагонов у поезда: #{amount}"
     @number = number
     @type = type
-    @amount_railway_carriage = amount_railway_carriage
+    @amount = amount
     @speed = 0
+    #@trainlist = Array.new(10) { |i|  }
+    @trainlist = []
   end
   def gather_speed
     @speed = 60
@@ -37,7 +40,7 @@ class Train
     @cur_station_index = 0
     @current_station = route.stations[@cur_station_index]
     @current_station.get_train(self)
-    puts "Поезд #{@number} находится на станции: #{@current_station.station}"
+    puts "Поезд #{@number} #{@type} #{@amount} находится на станции: #{@current_station.station}"
   end
   def goto_next_station
     if @route.stations[@cur_station_index].station == @route.stations.last.station
@@ -69,4 +72,17 @@ class Train
       puts "Показать следующую станцию: #{@next_station.station}"
     end
   end
+=begin
+  def add_train(train)
+    @trainlist << train
+  #  puts "Создали поезд: #{train.number} => #{train.type}=> #{train.amount}"
+  end
+  def trainlist
+    puts "Cписок всех поездов на станции, находящиеся в текущий момент:"
+    for train in @trainlist do
+      print "#{train.number}, #{train.type}, #{train.amount} " 
+    end
+    puts " "        
+  end
+=end
 end
