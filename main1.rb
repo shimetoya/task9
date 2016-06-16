@@ -6,81 +6,103 @@ require_relative 'passangertrain'
 require_relative 'car'
 require_relative 'passangercar'
 require_relative 'cargocar'
-train = Train.new(11,'p', 3)
-route = Route.new('First Station','Last Station')
-rail = RailwayStation.new('Second Station')
-car = Car.new
-passanger_train = PassangerTrain.new(1, 3)
-cargo_train = CargoTrain.new(2, 5)
+#route = Route.new('First Station','Last Station')
+#rail = RailwayStation.new('Second Station')
+#car = Car.new(1)
 
-puts "What would you like to do?"
-puts "-- Type 'add station' to add a station."
-puts "-- Type 'add train' to add a train."
-puts "-- Type 'add car' to add a car."
-puts "-- Type 'deduct car' to deduct a car."
-puts "-- Type 'train on station' to add a train on the station."
-puts "-- Type 'stationlist' to display all stations."
-puts "-- Type 'trainlist' to display all trains."
-puts "-- Type 'exit' to exit."
-
+@trains = []
+@cars = []
+@stations = []
 end_program = false
 while(!end_program)
+puts "Выберите, что будем делать?"
+puts "-- 1  - Добавить станцию."
+puts "-- 2  - Добавить поезд."
+puts "-- 3  - Добавить вагон."  
+puts "-- 4  - Отцепить вагон."
+puts "-- 5  - Поместить поезд на станцию."
+puts "-- 6  - Просмотреть список станций."
+puts "-- 7  - Просмотреть список поездов."
+puts "-- 8  - Выход."
+
 choice = gets.chomp.downcase
 case choice
-when 'add station'
+when '1'
 	puts "Введите название станции:"
 	station = gets.chomp
 	rail = RailwayStation.new(station)
-	route.add_station(rail)
-when 'add train'
+  @stations << rail
+when '2'
  	puts "Введите номер поезда:"
 	number = gets.chomp
 	puts "Введите тип поезда ('PassangerTrain' / 'CargoTrain' == p / c):"
 	type = gets.chomp
 	puts "Введите количество вагонов в поезде:"
-	amount = gets.chomp.to_i
+	@car = gets.chomp.to_i
   if type == 'p'
-    @amount_passanger_car = amount
-    passanger_train = PassangerTrain.new(number, @amount_passanger_car)
-    rail.get_train(passanger_train)
-    @train = passanger_train
+    @passanger_train = PassangerTrain.new(number)
+    @trains << @passanger_train.number << @passanger_train.type << @car
+    @cars << @car
+    @train = @passanger_train
   elsif type == 'c'
-    amount_cargo_car = amount
-    cargo_train = CargoTrain.new(number, amount_cargo_car)
-    rail.get_train(cargo_train)
-    @train = cargo_train
+    @cargo_train = CargoTrain.new(number)
+    @trains << @cargo_train.number << @cargo_train.type << @car
+    @cars << @car
+    @train = @cargo_train
   else
     puts "Unknown type"
   end
-when 'add car'
-	if @train.type == CargoTrain
-    cargo_train.add_car(cargo_train)
-	elsif @train.type == PassangerTrain
-    passanger_train.add_car(passanger_train)
-	else
+when '3'
+	if @cargo_train.type == :cargo
+    puts "Сколько вагонов присоединить?"
+    amount = gets.to_i
+    cargo_car = CargoCar.new(amount)
+    cargo_train = @cargo_train
+    cargo_car.add_car(cargo_train)
+    @car = cargo_car.car
+    @trains << @car
+	elsif @passanger_train.type == :passanger
+    puts "Сколько вагонов присоединить?"
+    amount = gets.to_i
+    passanger_car = PassangerCar.new(amount)
+    passanger_train = @passanger_train
+    passanger_car.add_car(passanger_train)
+    @car = passanger_car.car
+    @trains << @car	
+  else
 		puts "Type's error!"
-	end	    	
-when 'deduct car'
-  if @train.type == CargoTrain
-    cargo_train.deduct_car(cargo_train)
-  elsif @train.type == PassangerTrain
-    passanger_train.deduct_car(passanger_train)
+	end	
+when '4'
+  if @cargo_train.type == :cargo
+    cargo_car.deduct_car(cargo_train)
+    @trains.delete_at(-1) 
+  elsif @passanger_train.type == :passanger
+    passanger_car.deduct_car(passanger_train)
+    @trains.delete_at(-1)
   else
     puts "Type's error!"
-  end     
-when 'train on station'
-	if type == 'p'
-		passanger_train.route=(route)
+  end 
+when '5'
+  if type == 'p'
+    @cur_station_index = 0
+    @current_station = @stations[@cur_station_index]
+    puts "Поезд #{@train.number} #{@train.type} #{@amount} находится на станции: #{@current_station.station}"
 	elsif type == 'c'
-		cargo_train.route=(route)
-	else
+    @cur_station_index = 0
+    @current_station = @stations[@cur_station_index]
+    puts "Поезд #{@train.number} #{@train.type} #{@amount} находится на станции: #{@current_station.station}"	
+  else
 		puts "Unknown type"
 	end
-when 'stationlist'
-	route.show_stations
-when 'trainlist'
-	rail.current_train
-when 'exit'
+when '6'
+  puts "Cписок всех станций:"
+  for station in @stations do
+    print "#{station.station}, " 
+  end
+  puts " "
+when '7'
+  puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{@trains}"
+when '8'
 	end_program = true
 else
 	puts "Sorry, I didn't understand you."

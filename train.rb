@@ -9,8 +9,6 @@ class Train
     @type = type
     @amount = amount
     @speed = 0
-    #@trainlist = Array.new(10) { |i|  }
-    @trainlist = []
   end
   def gather_speed
     @speed = 60
@@ -72,17 +70,4 @@ class Train
       puts "Показать следующую станцию: #{@next_station.station}"
     end
   end
-=begin
-  def add_train(train)
-    @trainlist << train
-  #  puts "Создали поезд: #{train.number} => #{train.type}=> #{train.amount}"
-  end
-  def trainlist
-    puts "Cписок всех поездов на станции, находящиеся в текущий момент:"
-    for train in @trainlist do
-      print "#{train.number}, #{train.type}, #{train.amount} " 
-    end
-    puts " "        
-  end
-=end
 end

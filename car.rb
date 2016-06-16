@@ -1,18 +1,15 @@
 class Car
-  def initialize()
-   # puts "Станция называется: #{station}"
-   # @station = station
-  #  @current_station = station
+    attr_accessor :car
+  def initialize(car)
+    @car = car
     @cars = []
+  end 
+  def add_car
+    @cars << @car if self.type == @car.type
+    puts "#{@cars}"
   end
-  def get_train(train)
-    puts "Пришел поезд: #{train.number} "
-  end
-  def current_train
-    puts "Cписок всех поездов на станции, находящиеся в текущий момент:"
-    for number in @trains do
-      print "#{number.number}, #{number.type}, #{number.amount}, " 
-    end
-    puts " "
+  def deduct_car
+    @cars.delete(car) if self.type == car.type
+    puts "#{@cars}"
   end
 end
