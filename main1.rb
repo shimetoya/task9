@@ -6,9 +6,6 @@ require_relative 'passangertrain'
 require_relative 'car'
 require_relative 'passangercar'
 require_relative 'cargocar'
-#route = Route.new('First Station','Last Station')
-#rail = RailwayStation.new('Second Station')
-#car = Car.new(1)
 
 @trains = []
 @cars = []
@@ -57,31 +54,22 @@ when '3'
     puts "Сколько вагонов присоединить?"
     amount = gets.to_i
     cargo_car = CargoCar.new(amount)
-    cargo_train = @cargo_train
-    cargo_car.add_car(cargo_train)
-    @car = cargo_car.car
-    @trains << @car
+    car = cargo_car
+    @train.add_car(car)
+    @trains << car.car
 	elsif @passanger_train.type == :passanger
     puts "Сколько вагонов присоединить?"
     amount = gets.to_i
     passanger_car = PassangerCar.new(amount)
-    passanger_train = @passanger_train
-    passanger_car.add_car(passanger_train)
-    @car = passanger_car.car
-    @trains << @car	
+    car = passanger_train
+    @train.add_car(car)
+    @trains << car.car
   else
 		puts "Type's error!"
 	end	
 when '4'
-  if @cargo_train.type == :cargo
-    cargo_car.deduct_car(cargo_train)
-    @trains.delete_at(-1) 
-  elsif @passanger_train.type == :passanger
-    passanger_car.deduct_car(passanger_train)
+    @train.deduct_car(car)
     @trains.delete_at(-1)
-  else
-    puts "Type's error!"
-  end 
 when '5'
   if type == 'p'
     @cur_station_index = 0

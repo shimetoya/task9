@@ -25,9 +25,9 @@ class Train
   def operation_with_railway_carriage(key)
     if @speed == 0
       if key == '+'
-        @amount_railway_carriage += 1
+     #   @amount_railway_carriage += 1
       elsif key == '-'
-        @amount_railway_carriage -= 1
+     #   @amount_railway_carriage -= 1
       end
     else
       puts "Невозможно отцепить вагон, пока поезд движется!"	
@@ -69,5 +69,12 @@ class Train
       @next_station = @route.stations[@cur_station_index + 1]
       puts "Показать следующую станцию: #{@next_station.station}"
     end
+  end
+
+  def add_car(car)
+    @cars << car.car if self.type == car.type
+  end
+  def deduct_car(car)
+    @cars.delete(car) if self.type == car.type
   end
 end
