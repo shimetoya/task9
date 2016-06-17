@@ -24,19 +24,18 @@ puts "-- 8  - Выход."
 choice = gets.chomp.downcase
 case choice
 when '1'
-	puts "Введите название станции:"
-	station = gets.chomp
-	rail = RailwayStation.new(station)
+  puts "Введите название станции:"
+  station = gets.chomp
+  rail = RailwayStation.new(station)
   stations << rail
 when '2'
- 	puts "Введите номер поезда:"
-	number = gets.chomp
-	puts "Введите тип поезда ('PassangerTrain' / 'CargoTrain' == p / c):"
-	type = gets.chomp
-	  if type == 'p'
+  puts "Введите номер поезда:"
+  number = gets.chomp
+  puts "Введите тип поезда ('PassangerTrain' / 'CargoTrain' == p / c):"
+  type = gets.chomp
+    if type == 'p'
     @train = PassangerTrain.new(number)
     trains << @train.number << @train.type 
-    cars << @car
   elsif type == 'c'
     @train = CargoTrain.new(number)
     trains << @train.number << @train.type
@@ -44,15 +43,15 @@ when '2'
     puts "Unknown type"
   end
 when '3'
-	if @train.type == :cargo
+  if @train.type == :cargo
     car = CargoCar.new
     @train.add_car(car)
-	elsif @train.type == :passanger
+  elsif @train.type == :passanger
     car = PassangerCar.new
     @train.add_car(car)
   else
-		puts "Type's error!"
-	end	
+    puts "Type's error!"
+  end	
 when '4'
     @train.deduct_car(car) if @train.type == car.type
 when '5'
@@ -60,13 +59,13 @@ when '5'
     @cur_station_index = 0
     @current_station = stations[@cur_station_index]
     puts "Поезд № #{@train.number} типа: #{@train.type} находится на станции: #{@current_station.station}"
-	elsif type == 'c'
+  elsif type == 'c'
     @cur_station_index = 0
     @current_station = stations[@cur_station_index]
     puts "Поезд № #{@train.number} типа: #{@train.type} находится на станции: #{@current_station.station}"	
   else
-		puts "Unknown type"
-	end
+    puts "Unknown type"
+  end
 when '6'
   puts "Cписок всех станций:"
   for station in stations do
@@ -76,9 +75,9 @@ when '6'
 when '7'
   puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{trains}, #{@train.cars}"
 when '8'
-	end_program = true
+  end_program = true
 else
-	puts "Sorry, I didn't understand you."
-	end_program = true
+  puts "Sorry, I didn't understand you."
+  end_program = true
 end
 end
