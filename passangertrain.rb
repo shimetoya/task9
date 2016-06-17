@@ -7,4 +7,7 @@ attr_accessor :number
   def type
     :passanger
   end
+   def cars
+    @cars
+  end
 end
