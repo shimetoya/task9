@@ -7,7 +7,4 @@ attr_accessor :number
   def type
     :passanger
   end
-  def amount_railway_carriage
-    puts "Количество вагонов: #{passanger_car.car}"
-  end
 end
