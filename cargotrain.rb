@@ -10,4 +10,7 @@ class CargoTrain < Train
   def type
     :cargo
   end
+  def cars
+    @cars
+  end
 end
