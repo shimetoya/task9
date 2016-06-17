@@ -7,9 +7,8 @@ require_relative 'car'
 require_relative 'passangercar'
 require_relative 'cargocar'
 
-@trains = []
-@cars = []
-@stations = []
+trains = []
+stations = []
 end_program = false
 while(!end_program)
 puts "Выберите, что будем делать?"
@@ -28,68 +27,54 @@ when '1'
 	puts "Введите название станции:"
 	station = gets.chomp
 	rail = RailwayStation.new(station)
-  @stations << rail
+  stations << rail
 when '2'
  	puts "Введите номер поезда:"
 	number = gets.chomp
 	puts "Введите тип поезда ('PassangerTrain' / 'CargoTrain' == p / c):"
 	type = gets.chomp
-	puts "Введите количество вагонов в поезде:"
-	@car = gets.chomp.to_i
-  if type == 'p'
-    @passanger_train = PassangerTrain.new(number)
-    @trains << @passanger_train.number << @passanger_train.type << @car
-    @cars << @car
-    @train = @passanger_train
+	  if type == 'p'
+    @train = PassangerTrain.new(number)
+    trains << @train.number << @train.type 
+    cars << @car
   elsif type == 'c'
-    @cargo_train = CargoTrain.new(number)
-    @trains << @cargo_train.number << @cargo_train.type << @car
-    @cars << @car
-    @train = @cargo_train
+    @train = CargoTrain.new(number)
+    trains << @train.number << @train.type
   else
     puts "Unknown type"
   end
 when '3'
-	if @cargo_train.type == :cargo
-    puts "Сколько вагонов присоединить?"
-    amount = gets.to_i
-    cargo_car = CargoCar.new(amount)
-    car = cargo_car
+	if @train.type == :cargo
+    car = CargoCar.new
     @train.add_car(car)
-    @trains << car.car
-	elsif @passanger_train.type == :passanger
-    puts "Сколько вагонов присоединить?"
-    amount = gets.to_i
-    passanger_car = PassangerCar.new(amount)
-    car = passanger_train
+	elsif @train.type == :passanger
+    car = PassangerCar.new
     @train.add_car(car)
-    @trains << car.car
   else
 		puts "Type's error!"
 	end	
 when '4'
-    @train.deduct_car(car)
-    @trains.delete_at(-1)
+    @train.deduct_car(car) if @train.type == car.type
 when '5'
   if type == 'p'
     @cur_station_index = 0
-    @current_station = @stations[@cur_station_index]
-    puts "Поезд #{@train.number} #{@train.type} #{@amount} находится на станции: #{@current_station.station}"
+    @current_station = stations[@cur_station_index]
+    puts "Поезд № #{@train.number} типа: #{@train.type} находится на станции: #{@current_station.station}"
 	elsif type == 'c'
     @cur_station_index = 0
-    @current_station = @stations[@cur_station_index]
-    puts "Поезд #{@train.number} #{@train.type} #{@amount} находится на станции: #{@current_station.station}"	
+    @current_station = stations[@cur_station_index]
+    puts "Поезд № #{@train.number} типа: #{@train.type} находится на станции: #{@current_station.station}"	
   else
 		puts "Unknown type"
 	end
 when '6'
   puts "Cписок всех станций:"
-  for station in @stations do
+  for station in stations do
     print "#{station.station}, " 
   end
   puts " "
 when '7'
-  puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{@trains}"
+  puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{trains}, #{@train.cars}"
 when '8'
 	end_program = true
 else

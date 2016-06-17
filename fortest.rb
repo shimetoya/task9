@@ -25,15 +25,11 @@ train = cargo_train
 cargo_train.amount_railway_carriage
 cargo_train.route=(route)
 rail.get_train(cargo_train)
-puts "сколько вагонов добавить:"
-amount = gets.chomp
-cargo_car = CargoCar.new(amount)
+cargo_car = CargoCar.new
 car = cargo_car
 cargo_train.add_car(car)
 cargo_train.amount_railway_carriage
-puts "сколько вагонов добавить:"
-amount = gets.chomp
-cargo_car = CargoCar.new(amount)
+cargo_car = CargoCar.new
 car = cargo_car
 cargo_train.add_car(car)
 cargo_train.amount_railway_carriage
@@ -47,15 +43,11 @@ train = passanger_train
 passanger_train.amount_railway_carriage
 passanger_train.route=(route)
 rail.get_train(passanger_train)
-puts "сколько вагонов добавить:"
-amount = gets.chomp
-passanger_car = PassangerCar.new(amount)
+passanger_car = PassangerCar.new
 car = passanger_car
 passanger_train.add_car(car)
 passanger_train.amount_railway_carriage
-puts "сколько вагонов добавить:"
-amount = gets.chomp
-passanger_car = PassangerCar.new(amount)
+passanger_car = PassangerCar.new
 car = passanger_car
 passanger_train.add_car(car)
 passanger_train.amount_railway_carriage

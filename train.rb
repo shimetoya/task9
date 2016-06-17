@@ -60,9 +60,11 @@ class Train
     end
   end
   def add_car(car)
-    @cars << car.car if self.type == car.type
+    puts "Прицеплен вагон #{car}"
+    @cars << car if self.type == car.type
   end
   def deduct_car(car)
+    puts "Отцепляем вагон #{car}"
     @cars.delete(car) if self.type == car.type
   end
 end

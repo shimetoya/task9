@@ -1,7 +1,5 @@
 class PassangerCar < Car
-  attr_accessor :car
-  def initialize(car)
-    @car=car 
+  def initialize
   end
   def type
     :passanger
