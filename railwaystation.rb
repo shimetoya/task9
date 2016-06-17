@@ -29,9 +29,8 @@ class RailwayStation
     puts "Ушел поезд: #{train.number}"
     @trains.delete(train)
   end
-  
-  protected
   #скрываем от доступа из вне метод itarate_trains, который проверяет тип поезда и выводит список поездов по типу
+  protected
   def itarate_trains(type)
     @trains.each {|number| puts "Cписок всех поездов #{number.type} типа на станции, находящиеся в текущий момент: #{number.number}, #{number.type}, #{number.cars}" if number.type == type }
   end

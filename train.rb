@@ -22,18 +22,7 @@ class Train
   def amount_railway_carriage
     puts "Количество вагонов: #{@cars}"
   end
-  def operation_with_railway_carriage(key)
-    if @speed == 0
-      if key == '+'
-     #   @amount_railway_carriage += 1
-      elsif key == '-'
-     #   @amount_railway_carriage -= 1
-      end
-    else
-      puts "Невозможно отцепить вагон, пока поезд движется!"	
-    end
-  end
-  def route=(route)
+   def route=(route)
     @route = route
     @cur_station_index = 0
     @current_station = route.stations[@cur_station_index]
