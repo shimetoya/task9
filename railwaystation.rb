@@ -14,15 +14,15 @@ class RailwayStation
   def current_train
     puts "Cписок всех поездов на станции, находящиеся в текущий момент:"
     for number in @trains do
-      print "#{number.number}, #{number.type}, #{number.amount}, " 
+      print "#{number.number}, #{number.type}, #{number.cars}, " 
     end
     puts " "
   end
-  def current_train_with_type_pass
-    itarate_trains('pass')
+  def current_train_with_type_pass(passanger_train)
+    itarate_trains(passanger_train.type)
   end
-  def current_train_with_type_gruz
-    itarate_trains('gruz')
+  def current_train_with_type_gruz(cargo_train)
+    itarate_trains(cargo_train.type)
   end
   
   def sent_train(train)
@@ -33,6 +33,6 @@ class RailwayStation
   protected
   #скрываем от доступа из вне метод itarate_trains, который проверяет тип поезда и выводит список поездов по типу
   def itarate_trains(type)
-    @trains.each {|number| puts "Cписок всех поездов " + type +" типа на станции, находящиеся в текущий момент: #{number.number}, #{number.type}" if number.type == type }
+    @trains.each {|number| puts "Cписок всех поездов #{number.type} типа на станции, находящиеся в текущий момент: #{number.number}, #{number.type}, #{number.cars}" if number.type == type }
   end
 end

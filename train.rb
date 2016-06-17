@@ -20,7 +20,7 @@ class Train
     @speed = 0
   end
   def amount_railway_carriage
-    puts "Количество вагонов: #{@amount_railway_carriage}"
+    puts "Количество вагонов: #{@cars}"
   end
   def operation_with_railway_carriage(key)
     if @speed == 0
@@ -70,7 +70,6 @@ class Train
       puts "Показать следующую станцию: #{@next_station.station}"
     end
   end
-
   def add_car(car)
     @cars << car.car if self.type == car.type
   end

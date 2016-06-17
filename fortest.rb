@@ -12,7 +12,7 @@ require_relative 'passangercar'
 route = Route.new('First Station','Last Station')
 rail = RailwayStation.new('Second Station')
 car = Car.new
-cargo_car = CargoCar.new(2)
+
 #station = RailwayStation.new('Second Station')
 
 #train
@@ -21,10 +21,44 @@ cargo_train.gather_speed
 cargo_train.current_speed
 cargo_train.brake
 cargo_train.current_speed
-cargo_train.amount_railway_carriage
-cargo_train.operation_with_railway_carriage('+')
+train = cargo_train
 cargo_train.amount_railway_carriage
 cargo_train.route=(route)
+rail.get_train(cargo_train)
+puts "сколько вагонов добавить:"
+amount = gets.chomp
+cargo_car = CargoCar.new(amount)
+car = cargo_car
+cargo_train.add_car(car)
+cargo_train.amount_railway_carriage
+puts "сколько вагонов добавить:"
+amount = gets.chomp
+cargo_car = CargoCar.new(amount)
+car = cargo_car
+cargo_train.add_car(car)
+cargo_train.amount_railway_carriage
+
+passanger_train = PassangerTrain.new(88)
+passanger_train.gather_speed
+passanger_train.current_speed
+passanger_train.brake
+passanger_train.current_speed
+train = passanger_train
+passanger_train.amount_railway_carriage
+passanger_train.route=(route)
+rail.get_train(passanger_train)
+puts "сколько вагонов добавить:"
+amount = gets.chomp
+passanger_car = PassangerCar.new(amount)
+car = passanger_car
+passanger_train.add_car(car)
+passanger_train.amount_railway_carriage
+puts "сколько вагонов добавить:"
+amount = gets.chomp
+passanger_car = PassangerCar.new(amount)
+car = passanger_car
+passanger_train.add_car(car)
+passanger_train.amount_railway_carriage
 
 #route
 #puts "Введите название станции:"
@@ -40,20 +74,9 @@ route.delete_station(rail)
 route.show_stations
 
 #railwaystation
-rail.get_train(cargo_train)
-train = Train.new(123,'pass', 1)
-rail.get_train(train)
 rail.current_train
-rail.sent_train(train)
-
-rail.current_train
-rail.current_train_with_type_gruz
-rail.current_train_with_type_pass
-
-train = Train.new(13,'gruz', 10)
-rail.get_train(train)
-rail.current_train
-rail.current_train_with_type_gruz
-rail.current_train_with_type_pass
-rail.sent_train(train)
+#rail.sent_train(passanger_train)
+rail.current_train_with_type_gruz(cargo_train)
+rail.current_train_with_type_pass(passanger_train)
+rail.sent_train(cargo_train)
 rail.current_train
