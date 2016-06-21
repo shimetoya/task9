@@ -35,7 +35,7 @@ when '2'
   type = gets.chomp
     if type == 'p'
     @train = PassangerTrain.new(number)
-    trains << @train 
+    trains << @train
   elsif type == 'c'
     @train = CargoTrain.new(number)
     trains << @train
@@ -51,7 +51,7 @@ when '3'
     @train.add_car(car)
   else
     puts "Type's error!"
-  end	
+  end 
 when '4'
     @train.deduct_car(car) if @train.type == car.type
 when '5'
@@ -62,7 +62,7 @@ when '5'
   elsif type == 'c'
     @cur_station_index = 0
     @current_station = stations[@cur_station_index]
-    puts "Поезд № #{@train.number} типа: #{@train.type} находится на станции: #{@current_station.station}"	
+    puts "Поезд № #{@train.number} типа: #{@train.type} находится на станции: #{@current_station.station}"  
   else
     puts "Unknown type"
   end
