@@ -1,14 +1,26 @@
 class Train
+  include Company
+  include InstanceCounter
   attr_accessor :type
   attr_accessor :number
   attr_accessor :amount
   attr_accessor :station
+  @@trains = []
+  class << self
+    def get_train(train)
+      @train = train
+      @@trains << train
+    end
+    def find(number)
+      puts "Под данным номером есть поезд: #{@train}" if @train.number == number
+    end
+  end
   def initialize(number, type, amount)
     puts "Номер поезда: #{number}, тип поезда: #{type}, количество вагонов у поезда: #{amount}"
     @number = number
     @type = type
     @amount = amount
-    @speed = 0
+    @speed = 0 
   end
   def gather_speed
     @speed = 60

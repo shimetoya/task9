@@ -1,10 +1,16 @@
 class RailwayStation
   attr_accessor :station
+  include InstanceCounter
+  @@count = []
+  def self.all
+    puts "Список всех станций, созданных на данный момент: #{@@count}"
+  end
   def initialize(station)
     puts "Станция называется: #{station}"
     @station = station
     @current_station = station
     @trains = []
+    @@count << station
   end
   def get_train(train)
     @train = train

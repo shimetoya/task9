@@ -1,4 +1,5 @@
-
+#include Company
+#include InstanceCounter
 require_relative 'train'
 require_relative 'route'
 require_relative 'railwaystation'
@@ -7,7 +8,10 @@ require_relative 'passangertrain'
 require_relative 'car'
 require_relative 'cargocar'
 require_relative 'passangercar'
-
+require_relative 'module'
+require_relative 'InstanceCounter'
+include Company
+include InstanceCounter
 
 route = Route.new('First Station','Last Station')
 rail = RailwayStation.new('Second Station')

@@ -35,10 +35,10 @@ when '2'
   type = gets.chomp
     if type == 'p'
     @train = PassangerTrain.new(number)
-    trains << @train.number << @train.type 
+    trains << @train 
   elsif type == 'c'
     @train = CargoTrain.new(number)
-    trains << @train.number << @train.type
+    trains << @train
   else
     puts "Unknown type"
   end
@@ -73,7 +73,7 @@ when '6'
   end
   puts " "
 when '7'
-  puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{trains}, #{@train.cars}"
+  puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{trains}"
 when '8'
   end_program = true
 else
