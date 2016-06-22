@@ -1,6 +1,6 @@
 class Train
   include Company
-  #include InstanceCounter
+  include InstanceCounter
   attr_accessor :type
   attr_accessor :number
   attr_accessor :amount

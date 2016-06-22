@@ -3,25 +3,21 @@ module InstanceCounter
     base.extend ClassMethods
     base.send :include, InstanceMethods
   end
-
   module ClassMethods
-    @@instances = 0
-    def includ
-    puts @@instances
+    attr_accessor :counte
+    def instancess
+      InstanceMethods.instances
     end
   end
 
   module InstanceMethods
-    def includ
-      puts @@instances
-    end
     protected
-    def include!
-      @@instances += 1
-      #register_instance
-      #self.class.debug(log)
-     # register_instance, который увеличивает счетчик кол-ва экземпляров класса 
-     # и который можно вызвать из конструктора. При этом, данный метод не должен быть публичным.
+    @@counte = 0
+    def self.instances
+      puts "Количество экземпляров класса: #{@@counte}"
+    end
+    def register_instance
+      @@counte += 1
     end
   end
-end
+end 

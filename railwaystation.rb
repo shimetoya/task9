@@ -11,6 +11,7 @@ class RailwayStation
     @current_station = station
     @trains = []
     @@count << station
+    register_instance
   end
   def get_train(train)
     @train = train
