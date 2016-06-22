@@ -1,6 +1,6 @@
 class Train
   include Company
-  include InstanceCounter
+  #include InstanceCounter
   attr_accessor :type
   attr_accessor :number
   attr_accessor :amount
@@ -12,7 +12,8 @@ class Train
       @@trains << train
     end
     def find(number)
-      puts "Под данным номером есть поезд: #{@train}" if @train.number == number
+      train = @train
+      @@trains.select {|train| puts "Под данным номером есть поезд: #{train}, #{train.number}, #{train.type}, #{train.amount}" if train.number == number}
     end
   end
   def initialize(number, type, amount)
