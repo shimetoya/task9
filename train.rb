@@ -12,8 +12,9 @@ class Train
       @@trains << train
     end
     def find(number)
-      train = @train
-      @@trains.select {|train| puts "Под данным номером есть поезд: #{train}, #{train.number}, #{train.type}, #{train.amount}" if train.number == number}
+     train = @train
+     find_trains = @@trains.select {|train| train if number == train.number}
+     puts find_trains
     end
   end
   def initialize(number, type, amount)

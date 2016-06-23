@@ -1,34 +1,37 @@
 require_relative 'module'
-require_relative 'InstanceCounter'
+require_relative 'instance_counter'
 require_relative 'train'
 require_relative 'route'
-require_relative 'railwaystation'
-require_relative 'cargotrain'
-require_relative 'passangertrain'
+require_relative 'railway_station'
+require_relative 'cargo_train'
+require_relative 'passanger_train'
 require_relative 'car'
-require_relative 'cargocar'
-require_relative 'passangercar'
+require_relative 'cargo_car'
+require_relative 'passanger_car'
 
 #route = Route.new('First Station','Last Station')
 rail = RailwayStation.new('1 Station')
-    RailwayStation.instancess
+RailwayStation.instances(rail)
 rail = RailwayStation.new('2 Station')
-    RailwayStation.instancess
+RailwayStation.instances(rail)
 rail = RailwayStation.new('3 Station')
-    RailwayStation.instancess
-
+RailwayStation.instances(rail)
 =begin
 train = Train.new(1, 'cargo', 2)
+      puts train
 Train.get_train(train)
-
 train = Train.new(6, 'cargo', 25)
+      puts train
 Train.get_train(train)
 train = Train.new(7, 'cargo', 62)
+      puts train
+
 Train.get_train(train)
 train = Train.new(6, 'pass', 5)
+      puts train
 Train.get_train(train)
-
 Train.find(6)
+
 
 #train
 cargo_train = CargoTrain.new(11)

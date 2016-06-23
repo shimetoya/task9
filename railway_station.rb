@@ -1,5 +1,6 @@
 class RailwayStation
   attr_accessor :station
+  attr_accessor :counte
   include InstanceCounter
   @@count = []
   def self.all
