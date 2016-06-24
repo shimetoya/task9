@@ -4,9 +4,9 @@ module InstanceCounter
     base.send :include, InstanceMethods
   end
   module ClassMethods
-    def instances(rail)
-      counte = @counte
-      puts "Количество экземпляров класса: #{rail.counte}"
+    def instances
+      counte = InstanceMethods.class_variable_get(:@@counte)
+      puts "Количество экземпляров класса: #{counte}"
     end
   end
 
@@ -14,8 +14,7 @@ module InstanceCounter
     protected
     @@counte=0 
     def register_instance
-      @counte = @@counte
-      @@counte += 1
+      @@counte +=1  
     end
   end
 end 
