@@ -5,18 +5,20 @@ class Train
   attr_accessor :amount
   attr_accessor :station
   @@trains = []
+  
+  NUMBER_FORMAT = /^\w{3}[-]*\w{2}$/i
   class << self
     def find(number)
       train = @train
       find_trains = @@trains.select {|train| number == train.number}
-      find_trains
+	  find_trains
     end
   end
   def initialize(number, type, amount)
-    puts "Номер поезда: #{number}, тип поезда: #{type}, количество вагонов у поезда: #{amount}"
     @number = number
     @type = type
     @amount = amount
+	validate!
     @speed = 0 
     @@trains << self
   end
@@ -71,10 +73,30 @@ class Train
   end
   def add_car(car)
     puts "Прицеплен вагон #{car}"
-    @cars << car if self.type == car.type
+	validate_car!(car)
+    @cars << car #if self.type == car.type
   end
   def deduct_car(car)
     puts "Отцепляем вагон #{car}"
-    @cars.delete(car) if self.type == car.type
+	validate_car!(car)
+    @cars.delete(car) #if self.type == car.type
+  end
+  def valid?
+    validate!
+  rescue
+    false
+  end
+  def validate!
+    raise "Number can't be nil" if number.nil?
+	raise "Number should be String at least 5 symbols length" if !number.instance_of? String
+    raise "Number should be at least 5 symbols" if number.length < 5
+    raise "Number has invalid format" if number !~ NUMBER_FORMAT
+	raise "Type should be pass or cargo" if type.nil? || (type != 'cargo' && type != 'pass')
+	true
+  end
+  def validate_car!(car)
+    raise "Car can't be nil" if car.nil?
+	raise "Wrong car type" if self.type != car.type
+    true
   end
 end

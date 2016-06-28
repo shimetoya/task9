@@ -9,29 +9,70 @@ require_relative 'car'
 require_relative 'cargo_car'
 require_relative 'passanger_car'
 
-#route = Route.new('First Station','Last Station')
-rail = RailwayStation.new('1 Station')
-RailwayStation.instances(rail)
-rail = RailwayStation.new('2 Station')
-RailwayStation.instances(rail)
-rail = RailwayStation.new('3 Station')
-RailwayStation.instances(rail)
+route = Route.new('First Station','Last Station')
+railFirst = RailwayStation.new('1 Station')
+#RailwayStation.instances(rail)
+railSecond = RailwayStation.new('2 Station')
+#RailwayStation.instances(rail)
+railThird = RailwayStation.new('3 Station')
+#RailwayStation.instances(rail)
+#train = Train.new(1, 'cargo', 2)
+ #     puts train
+#train = Train.new(6, 'cargo', 25)
+ #     puts train
+begin
+  trainInvalidNumber = Train.new(6, 'pass', 5)
+rescue RuntimeError => e
+    puts e.inspect
+end
+begin
+  trainInvalidNumberType = Train.new('asa', 'pass', 5)
+rescue RuntimeError => e
+    puts e.inspect
+end
+begin
+  trainInvalidType = Train.new('633-21', 'cargoa', 62)
+rescue RuntimeError => e
+    puts e.inspect
+end
+
+pass_train = Train.new('633-21', 'pass', 5)
+      puts pass_train
+cargo_train = Train.new('a3321', 'cargo', 8)
+      puts cargo_train	  
+cargo_car = CargoCar.new
+car = cargo_car
+begin
+  pass_train.add_car(car)
+rescue RuntimeError => e
+    puts e.inspect
+end
+
+begin
+  route.add_station('invalidStation')
+rescue RuntimeError => e
+    puts e.inspect
+end
+route.add_station(railFirst)
+route.show_stations
+route.delete_station(railFirst)
+route.show_stations
+	  #Train.find(1)
+#puts Train.find(1)
+
+#route
+#puts "Введите название станции:"
+#station = gets.chomp
+#route.new_station(station)
+#route.add_station(railFirst)
+#route.show_stations
+#cargo_train.goto_next_station
+#cargo_train.show_station
+#cargo_train.show_next_station
+#cargo_train.show_prev_station
+#route.delete_station(railFirst)
+#route.show_stations
 =begin
-train = Train.new(1, 'cargo', 2)
-      puts train
-Train.get_train(train)
-train = Train.new(6, 'cargo', 25)
-      puts train
-Train.get_train(train)
-train = Train.new(7, 'cargo', 62)
-      puts train
-
-Train.get_train(train)
-train = Train.new(6, 'pass', 5)
-      puts train
-Train.get_train(train)
-Train.find(6)
-
 
 #train
 cargo_train = CargoTrain.new(11)
