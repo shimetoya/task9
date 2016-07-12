@@ -15,9 +15,9 @@ class PassangerCar < Car
     end
   end
   def count_of_take_places
-    puts @@count
+    @@count
   end
   def count_of_free_places
-    puts @seats
+    @seats
   end
 end

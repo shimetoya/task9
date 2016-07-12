@@ -2,21 +2,18 @@ class Route
   attr_accessor :stations
   attr_accessor :station
   def initialize(first_station, last_station)
-    puts "Маршрут лежит от станции #{first_station} до станции #{last_station}."
-    @first_station = RailwayStation.new(first_station)
-    @last_station = RailwayStation.new(last_station)
-    @stations = [@first_station, @last_station]
+    #@first_station = RailwayStation.new(first_station)
+    #@last_station = RailwayStation.new(last_station)
+    @stations = [first_station, last_station]
   end
   def add_station(rail)
     validate!(rail)
-	@stations.insert(1, rail)
-	puts "Добавлена станция: #{rail.station}"
+	  @stations.insert(1, rail)
   end
   def delete_station(rail)
     @stations.delete(rail)
   end
   def show_stations
-    puts "Список всех станций: "
     for rail in @stations do
       print "#{rail.station}, " 
     end
@@ -27,11 +24,10 @@ class Route
   rescue
     false
   end
-
   protected
-  def validate!(railStation)
-    raise "Station can't be nil" if railStation.nil?
-	raise "Stationt should be instance of RailwayStation" if !railStation.instance_of? RailwayStation
+  def validate!
+	  raise "Stationt should be instance of RailwayStation" if station[0].instance_of? RailwayStation
+    raise "Stationt should be instance of RailwayStation" if station[-1].instance_of? RailwayStation
     true
   end
 end

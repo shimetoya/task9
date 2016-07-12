@@ -5,24 +5,21 @@ class RailwayStation
   @@count = []
   @@counter = 0
   def self.all
-    puts "Список всех станций, созданных на данный момент: #{@@count}"
+    @@count
   end
   def initialize(station)
-    puts "Станция называется: #{station}"
     @station = station
     @current_station = station
     @trains = []
-    @@count << station
     validate!
+    @@count << station
     register_instance
   end
   def get_train(train)
     @train = train
     @trains << train
-    puts "Пришел поезд: #{train.number} "
   end
   def current_train
-    puts "Cписок всех поездов на станции, находящиеся в текущий момент:"
     for number in @trains do
       print "#{number.number}, #{number.type}, #{number.cars}, " 
     end
@@ -35,7 +32,6 @@ class RailwayStation
     itarate_trains(:cargo)
   end
   def sent_train(train)
-    puts "Ушел поезд: #{train.number}"
     @trains.delete(train)
   end
   def valid?
@@ -51,6 +47,6 @@ class RailwayStation
   #скрываем от доступа из вне метод itarate_trains, который проверяет тип поезда и выводит список поездов по типу
   protected
   def itarate_trains(type)
-    @trains.each {|number| puts "Cписок всех поездов #{number.type} типа на станции, находящиеся в текущий момент: #{number.number}, #{number.type}, #{number.cars}" if number.type == type }
+    @trains.each {|number| number if number.type == type }
   end
 end

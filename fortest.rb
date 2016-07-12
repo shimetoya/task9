@@ -24,7 +24,7 @@ passanger_train.brake
 passanger_train.current_speed
 train = passanger_train
 passanger_train.amount_railway_carriage
-passanger_train.route=(route)
+#passanger_train.route=(route)
 rail.get_train(passanger_train)
 passanger_car = PassangerCar.new(10)
 car = passanger_car

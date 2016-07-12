@@ -15,9 +15,9 @@ class CargoCar < Car
     end
   end
   def count_of_take_volumes
-    puts @@count
+    @@count
   end
   def count_of_free_volumes
-    puts @volume
+    @volume
   end
 end
