@@ -19,12 +19,16 @@ class RailwayStation
     @train = train
     @trains << train
   end
-  def current_train
-    for number in @trains do
-      print "#{number.number}, #{number.type}, #{number.cars}, " 
-    end
-    puts " "
-  end
+  #def current_train
+  #  for number in @trains do
+  #    print "#{number.number}, #{number.type}, #{number.cars}, " 
+ #   end
+  #  puts " "
+ # end
+def current_train (&block)
+  @trains.each {|train| yield(train)}
+end
+
   def current_train_with_type_pass
     itarate_trains(:pass)
   end

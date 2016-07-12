@@ -4,6 +4,7 @@ class Train
   attr_accessor :number
   attr_accessor :amount
   attr_accessor :station
+  attr_reader :cars
   include InstanceCounter
   @@trains = []
   @@counter = 0
@@ -83,6 +84,9 @@ class Train
 	    validate_car!(car)
       @cars.delete(car) #if self.type == car.type
     end
+  end
+  def each_car(&block)
+     @cars.each {|car| yield(car)}
   end
   def valid?
     validate!

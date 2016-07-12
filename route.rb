@@ -7,7 +7,7 @@ class Route
     @stations = [first_station, last_station]
   end
   def add_station(rail)
-    validate!(rail)
+    validate!
 	  @stations.insert(1, rail)
   end
   def delete_station(rail)
@@ -26,8 +26,8 @@ class Route
   end
   protected
   def validate!
-	  raise "Stationt should be instance of RailwayStation" if station[0].instance_of? RailwayStation
-    raise "Stationt should be instance of RailwayStation" if station[-1].instance_of? RailwayStation
+	  raise "Stationt should be instance of RailwayStation" if stations[0].instance_of? RailwayStation
+    raise "Stationt should be instance of RailwayStation" if stations[-1].instance_of? RailwayStation
     true
   end
 end
