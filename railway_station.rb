@@ -1,7 +1,7 @@
 class RailwayStation
   attr_accessor :station
   attr_accessor :counte
-  #include InstanceCounter
+  include InstanceCounter
   @@count = []
   @@counter = 0
   def self.all
@@ -13,7 +13,8 @@ class RailwayStation
     @current_station = station
     @trains = []
     @@count << station
-   # register_instance
+    validate!
+    register_instance
   end
   def get_train(train)
     @train = train
@@ -27,21 +28,15 @@ class RailwayStation
     end
     puts " "
   end
-  def current_train_with_type_pass(passanger_train)
-    itarate_trains(passanger_train.type)
+  def current_train_with_type_pass
+    itarate_trains(:pass)
   end
-  def current_train_with_type_gruz(cargo_train)
-    itarate_trains(cargo_train.type)
+  def current_train_with_type_gruz
+    itarate_trains(:cargo)
   end
-  
   def sent_train(train)
     puts "Ушел поезд: #{train.number}"
     @trains.delete(train)
-  end
-  #скрываем от доступа из вне метод itarate_trains, который проверяет тип поезда и выводит список поездов по типу
-  protected
-  def itarate_trains(type)
-    @trains.each {|number| puts "Cписок всех поездов #{number.type} типа на станции, находящиеся в текущий момент: #{number.number}, #{number.type}, #{number.cars}" if number.type == type }
   end
   def valid?
     validate!
@@ -49,8 +44,13 @@ class RailwayStation
     false
   end
   def validate!
-    raise "Station can't be nil" if station.nil?
-	raise "Station should be String" if !station.instance_of? String
+    raise "Station should be String" if !station.instance_of? String
+    raise "Station can't be < 3" if station.length < 3
     true
+  end
+  #скрываем от доступа из вне метод itarate_trains, который проверяет тип поезда и выводит список поездов по типу
+  protected
+  def itarate_trains(type)
+    @trains.each {|number| puts "Cписок всех поездов #{number.type} типа на станции, находящиеся в текущий момент: #{number.number}, #{number.type}, #{number.cars}" if number.type == type }
   end
 end

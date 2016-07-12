@@ -6,22 +6,17 @@ class Train
   attr_accessor :station
   include InstanceCounter
   @@trains = []
-
   @@counter = 0
-  
-  NUMBER_FORMAT = /^\w{3}[-]*\w{2}$/i
+  NUMBER_FORMAT = /^[a-z\d]{3}-?[a-z\d]{2}$/i
   class << self
     def find(number)
       @@trains.select {|train| number == train.number} [0]
     end
   end
-
-  def initialize(number, type, amount)
+  def initialize(number)
     @number = number
-    @type = type
-    @amount = amount
-	validate!
     @speed = 0 
+    validate!
     @@trains << self
     register_instance
   end
@@ -80,14 +75,18 @@ class Train
     end
   end
   def add_car(car)
-    puts "Прицеплен вагон #{car}"
-	validate_car!(car)
-    @cars << car #if self.type == car.type
+    if speed == 0
+      puts "Прицеплен вагон #{car}"
+	    validate_car!(car)
+      @cars << car #if self.type == car.type
+    end
   end
   def deduct_car(car)
-    puts "Отцепляем вагон #{car}"
-	validate_car!(car)
-    @cars.delete(car) #if self.type == car.type
+    if speed == 0
+      puts "Отцепляем вагон #{car}"
+	    validate_car!(car)
+      @cars.delete(car) #if self.type == car.type
+    end
   end
   def valid?
     validate!
@@ -95,16 +94,14 @@ class Train
     false
   end
   def validate!
-    raise "Number can't be nil" if number.nil?
-	raise "Number should be String at least 5 symbols length" if !number.instance_of? String
-    raise "Number should be at least 5 symbols" if number.length < 5
     raise "Number has invalid format" if number !~ NUMBER_FORMAT
-	raise "Type should be pass or cargo" if type.nil? || (type != 'cargo' && type != 'pass')
+	  raise "Number should be String at least 5 symbols length" if !number.instance_of? String
+	 # raise "Type should be pass or cargo" if type.nil? || (type != 'cargo' && type != 'pass')
 	true
   end
   def validate_car!(car)
     raise "Car can't be nil" if car.nil?
-	raise "Wrong car type" if self.type != car.type
+	  raise "Wrong car type" if self.type != car.type
     true
   end
 end

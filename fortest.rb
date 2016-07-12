@@ -12,22 +12,22 @@ require_relative 'passanger_car'
 
 #route = Route.new('First Station','Last Station')
 rail = RailwayStation.new('1 Station')
-RailwayStation.instances
-rail = RailwayStation.new('2 Station')
-RailwayStation.instances
+#RailwayStation.instances
+rail = RailwayStation.new('2 v')
+#RailwayStation.instances
 rail = RailwayStation.new('3 Station')
-RailwayStation.instances
+#RailwayStation.instances
 
-train = Train.new(1, 'cargo', 2)
+train = Train.new('242-FF')
 Train.instances
-train = Train.new(6, 'cargo', 25)
+train = Train.new('2lo-F9')
 Train.instances
-train = Train.new(7, 'cargo', 62)
+train = Train.new('y42-4F')
 Train.instances
-train = Train.new(6, 'pass', 5)
+train = Train.new('2g2-hl')
 Train.instances
-Train.find(7)
-puts Train.find(7)
+Train.find('y42-4F')
+puts Train.find('y42-4F')
 
 
 route = Route.new('First Station','Last Station')
@@ -42,10 +42,11 @@ railThird = RailwayStation.new('3 Station')
 #train = Train.new(6, 'cargo', 25)
  #     puts train
 begin
-  trainInvalidNumber = Train.new(6, 'pass', 5)
+  trainInvalidNumber = Train.new('d')
 rescue RuntimeError => e
     puts e.inspect
 end
+
 begin
   trainInvalidNumberType = Train.new('asa', 'pass', 5)
 rescue RuntimeError => e
