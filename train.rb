@@ -8,11 +8,6 @@ class Train
   @@trains = []
   @@counter = 0
   NUMBER_FORMAT = /^[a-z\d]{3}-?[a-z\d]{2}$/i
-  class << self
-    def find(number)
-      @@trains.select {|train| number == train.number} [0]
-    end
-  end
   def initialize(number)
     @number = number
     @speed = 0 
@@ -22,7 +17,10 @@ class Train
   end
     class << self
     def find(number)
-      @@trains.select {|train| number == train.number}[0]
+     # @@trains.select {|train| number == train.number}[0]
+      m=0
+      @@trains.each {|train| m = train if number == train.number} 
+      m
     end
   end
   def gather_speed

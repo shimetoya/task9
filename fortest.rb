@@ -9,7 +9,7 @@ require_relative 'car'
 require_relative 'cargo_car'
 require_relative 'passanger_car'
 
-
+=begin
 #route = Route.new('First Station','Last Station')
 rail = RailwayStation.new('1 Station')
 #RailwayStation.instances
@@ -17,16 +17,20 @@ rail = RailwayStation.new('2 v')
 #RailwayStation.instances
 rail = RailwayStation.new('3 Station')
 #RailwayStation.instances
-
+=end
 train = Train.new('242-FF')
-Train.instances
+puts train
+#Train.instances
 train = Train.new('2lo-F9')
-Train.instances
+puts train
+#Train.instances
 train = Train.new('y42-4F')
-Train.instances
+puts train
+#Train.instances
 train = Train.new('2g2-hl')
-Train.instances
-Train.find('y42-4F')
+puts train
+#Train.instances
+puts "train"
 puts Train.find('y42-4F')
 
 
