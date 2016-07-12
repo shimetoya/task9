@@ -3,6 +3,7 @@ class RailwayStation
   attr_accessor :counte
   include InstanceCounter
   @@count = []
+  @@counter = 0
   def self.all
     puts "Список всех станций, созданных на данный момент: #{@@count}"
   end

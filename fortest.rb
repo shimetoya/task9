@@ -11,27 +11,24 @@ require_relative 'passanger_car'
 
 #route = Route.new('First Station','Last Station')
 rail = RailwayStation.new('1 Station')
-RailwayStation.instances(rail)
+RailwayStation.instances
 rail = RailwayStation.new('2 Station')
-RailwayStation.instances(rail)
+RailwayStation.instances
 rail = RailwayStation.new('3 Station')
-RailwayStation.instances(rail)
-=begin
+RailwayStation.instances
+
 train = Train.new(1, 'cargo', 2)
-      puts train
-Train.get_train(train)
+Train.instances
 train = Train.new(6, 'cargo', 25)
-      puts train
-Train.get_train(train)
+Train.instances
 train = Train.new(7, 'cargo', 62)
-      puts train
-
-Train.get_train(train)
+Train.instances
 train = Train.new(6, 'pass', 5)
-      puts train
-Train.get_train(train)
-Train.find(6)
+Train.instances
+Train.find(7)
+puts Train.find(7)
 
+=begin
 
 #train
 cargo_train = CargoTrain.new(11)

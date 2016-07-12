@@ -1,17 +1,12 @@
 class Train
-  include Company
+  #include Company
   attr_accessor :type
   attr_accessor :number
   attr_accessor :amount
   attr_accessor :station
+ # include InstanceCounter
   @@trains = []
-  class << self
-    def find(number)
-      train = @train
-      find_trains = @@trains.select {|train| number == train.number}
-      find_trains
-    end
-  end
+  @@counter = 0
   def initialize(number, type, amount)
     puts "Номер поезда: #{number}, тип поезда: #{type}, количество вагонов у поезда: #{amount}"
     @number = number
@@ -19,6 +14,12 @@ class Train
     @amount = amount
     @speed = 0 
     @@trains << self
+    register_instance
+  end
+    class << self
+    def find(number)
+      @@trains.select {|train| number == train.number}[0]
+    end
   end
   def gather_speed
     @speed = 60
