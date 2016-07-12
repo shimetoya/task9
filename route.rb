@@ -8,8 +8,9 @@ class Route
     @stations = [@first_station, @last_station]
   end
   def add_station(rail)
-    @stations.insert(1, rail)
-    puts "Добавлена станция: #{rail.station}"
+    validate!(rail)
+	@stations.insert(1, rail)
+	puts "Добавлена станция: #{rail.station}"
   end
   def delete_station(rail)
     @stations.delete(rail)
@@ -20,5 +21,17 @@ class Route
       print "#{rail.station}, " 
     end
     puts " "
+  end
+  def valid?
+    validate!
+  rescue
+    false
+  end
+
+  protected
+  def validate!(railStation)
+    raise "Station can't be nil" if railStation.nil?
+	raise "Stationt should be instance of RailwayStation" if !railStation.instance_of? RailwayStation
+    true
   end
 end

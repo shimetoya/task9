@@ -1,7 +1,7 @@
 class RailwayStation
   attr_accessor :station
   attr_accessor :counte
-  include InstanceCounter
+  #include InstanceCounter
   @@count = []
   @@counter = 0
   def self.all
@@ -13,7 +13,7 @@ class RailwayStation
     @current_station = station
     @trains = []
     @@count << station
-    register_instance
+   # register_instance
   end
   def get_train(train)
     @train = train
@@ -42,5 +42,15 @@ class RailwayStation
   protected
   def itarate_trains(type)
     @trains.each {|number| puts "Cписок всех поездов #{number.type} типа на станции, находящиеся в текущий момент: #{number.number}, #{number.type}, #{number.cars}" if number.type == type }
+  end
+  def valid?
+    validate!
+  rescue
+    false
+  end
+  def validate!
+    raise "Station can't be nil" if station.nil?
+	raise "Station should be String" if !station.instance_of? String
+    true
   end
 end
