@@ -73,14 +73,14 @@ class Train
     end
   end
   def add_car(car)
-    if speed == 0
+    if @speed == 0
       puts "Прицеплен вагон #{car}"
 	    validate_car!(car)
       @cars << car #if self.type == car.type
     end
   end
   def deduct_car(car)
-    if speed == 0
+    if @speed == 0
       puts "Отцепляем вагон #{car}"
 	    validate_car!(car)
       @cars.delete(car) #if self.type == car.type

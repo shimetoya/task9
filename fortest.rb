@@ -9,15 +9,53 @@ require_relative 'car'
 require_relative 'cargo_car'
 require_relative 'passanger_car'
 
-=begin
-#route = Route.new('First Station','Last Station')
+route = Route.new('First Station','Last Station')
 rail = RailwayStation.new('1 Station')
 #RailwayStation.instances
 rail = RailwayStation.new('2 v')
 #RailwayStation.instances
 rail = RailwayStation.new('3 Station')
 #RailwayStation.instances
-=end
+
+passanger_train = PassangerTrain.new('242-FF')
+passanger_train.gather_speed
+passanger_train.current_speed
+passanger_train.brake
+passanger_train.current_speed
+train = passanger_train
+passanger_train.amount_railway_carriage
+passanger_train.route=(route)
+rail.get_train(passanger_train)
+passanger_car = PassangerCar.new(10)
+car = passanger_car
+passanger_train.add_car(car)
+passanger_train.amount_railway_carriage
+
+car.take_place
+car.take_place
+car.count_of_take_places
+car.count_of_free_places
+
+
+cargo_train = CargoTrain.new('118-gF')
+cargo_train.gather_speed
+cargo_train.current_speed
+cargo_train.brake
+cargo_train.current_speed
+train = cargo_train
+cargo_train.amount_railway_carriage
+cargo_train.route=(route)
+rail.get_train(cargo_train)
+cargo_car = CargoCar.new(100)
+car = cargo_car
+cargo_train.add_car(car)
+cargo_train.amount_railway_carriage
+
+car.take_volume(11)
+car.take_volume(2)
+car.count_of_take_volumes
+car.count_of_free_volumes
+
 train = Train.new('242-FF')
 puts train
 #Train.instances
