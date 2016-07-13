@@ -4,17 +4,15 @@ class Train
   attr_accessor :number
   attr_accessor :amount
   attr_accessor :station
-  attr_reader :cars
-  include InstanceCounter
+  attr_accessor :cars
   @@trains = []
   @@counter = 0
   NUMBER_FORMAT = /^[a-z\d]{3}-?[a-z\d]{2}$/i
   def initialize(number)
     @number = number
-    @speed = 0 
+    @speed = 0
     validate!
     @@trains << self
-    register_instance
   end
   class << self
     def find(number)

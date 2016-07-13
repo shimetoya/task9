@@ -1,5 +1,4 @@
 require_relative 'module'
-require_relative 'instance_counter'
 require_relative 'train'
 require_relative 'route'
 require_relative 'railway_station'
@@ -11,37 +10,45 @@ require_relative 'passanger_car'
 
 route = Route.new('First Station','Last Station')
 rail = RailwayStation.new('1 Station')
-
-passanger_train = PassangerTrain.new('242-FF')
-passanger_car = PassangerCar.new(10)
-car = passanger_car
-
-car.take_place
-car.take_place
-car.count_of_take_places
-car.count_of_free_places
+rail1 = RailwayStation.new('2 Station')
+rail2 = RailwayStation.new('3 Station')
 
 
-cargo_train = CargoTrain.new('118-gF')
-cargo_car = CargoCar.new(100)
-car = cargo_car
+train2 = PassangerTrain.new('242-FF')
+car2 = PassangerCar.new(10)
+rail1.get_train(train2)
 
-car.take_volume(11)
-car.take_volume(2)
-car.count_of_take_volumes
-car.count_of_free_volumes
+car2.take_place
+car2.take_place
+car2.count_of_take_places
+car2.count_of_free_places
 
+
+train1 = CargoTrain.new('118-gF')
+car1 = CargoCar.new(100)
+rail.get_train(train1)
+train1.add_car(222)
+
+
+car1.take_volume(11)
+car1.count_of_take_volumes
+car1.count_of_free_volumes
 
 rail.each_train {|train| puts train}
+train2.each_car{|car| puts car}
 
-passanger_train.each_car{|car| puts car}
-
-который перебирает последовательно все станции и для каждой станции выводит список 
-поездов в формате:
-
-    Номер поезда, тип, кол-во вагонов
-    А для каждого поезда на станции выводить список вагонов в формате:
-    Номер вагона (можно назначать автоматически), тип вагона, кол-во свободных и занятых мест (для пассажирского вагона) или кол-во свободного и занятого объема (для грузовых вагонов).
-
-
-
+(RailwayStation.all).each do |station|
+  station.station_with_train
+  station.each_train do |train|
+    train.each_car do |car|
+      puts car.type
+      if car.type == :cargo
+        car.cars
+      elsif car.type == :passanger
+        car.cars
+      else
+        puts 'Error'
+      end 
+    end
+  end
+end

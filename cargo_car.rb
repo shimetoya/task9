@@ -20,4 +20,7 @@ class CargoCar < Car
   def count_of_free_volumes
     @volume
   end
+  def cars
+    puts "Тип вагона: #{@type}, количество свободного объема: #{@volume}, количество занятого объема: #{@@count}"
+  end
 end

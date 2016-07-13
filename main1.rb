@@ -8,6 +8,7 @@ require_relative 'passangercar'
 require_relative 'cargocar'
 
 trains = []
+cars = []
 stations = []
 end_program = false
 while(!end_program)
@@ -19,7 +20,10 @@ puts "-- 4  - Отцепить вагон."
 puts "-- 5  - Поместить поезд на станцию."
 puts "-- 6  - Просмотреть список станций."
 puts "-- 7  - Просмотреть список поездов."
-puts "-- 8  - Выход."
+puts "-- 8  - Просмотреть список вагонов."
+puts "-- 9  - Просмотреть список поездов на станции."
+puts "-- 10  - Занять место или объем в вагоне."
+puts "-- 11  - Выход."
 
 choice = gets.chomp.downcase
 case choice
@@ -44,11 +48,17 @@ when '2'
   end
 when '3'
   if @train.type == :cargo
-    car = CargoCar.new
+    puts "Введите объем вагона:"
+    volume = gets.chomp
+    car = CargoCar.new(volume)
     @train.add_car(car)
+    cars << car
   elsif @train.type == :passanger
-    car = PassangerCar.new
+    puts "Введите количество мест:"
+    seats = gets.chomp
+    car = PassangerCar.new(seats)
     @train.add_car(car)
+    cars << car
   else
     puts "Type's error!"
   end 
@@ -75,6 +85,28 @@ when '6'
 when '7'
   puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{trains}"
 when '8'
+  if car.type == :cargo
+    puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{cars}"
+  elsif car.type == :passanger
+    puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{cars}"
+  else
+    puts "Type's error!"
+  end 
+when '9'
+  (RailwayStation.all).each do |station|
+  station.station_with_train
+  end
+when '10'
+  if car.type == :cargo
+    puts "Введите объем вагона, который необходимо занять:"
+    vol = gets.chomp
+    car.take_volume(vol)
+  elsif @car.type == :passanger
+    car.take_place
+  else
+    puts "Type's error!"
+  end 
+when '11'
   end_program = true
 else
   puts "Sorry, I didn't understand you."

@@ -1,7 +1,6 @@
 class RailwayStation
   attr_accessor :station
   attr_accessor :counte
-  include InstanceCounter
   @@count = []
   @@counter = 0
   def self.all
@@ -12,23 +11,15 @@ class RailwayStation
     @current_station = station
     @trains = []
     validate!
-    @@count << station
-    register_instance
+    @@count << self
   end
   def get_train(train)
     @train = train
     @trains << train
   end
-  #def current_train
-  #  for number in @trains do
-  #    print "#{number.number}, #{number.type}, #{number.cars}, " 
- #   end
-  #  puts " "
- # end
-def current_train (&block)
-  @trains.each {|train| yield(train)}
-end
-
+  def each_train (&block)
+    @trains.each {|train| yield(train)}
+  end
   def current_train_with_type_pass
     itarate_trains(:pass)
   end
@@ -37,6 +28,9 @@ end
   end
   def sent_train(train)
     @trains.delete(train)
+  end
+  def station_with_train
+    puts "Станция: #{@station}, поезд: #{@trains}"
   end
   def valid?
     validate!
