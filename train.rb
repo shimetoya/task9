@@ -16,10 +16,10 @@ class Train
   end
   class << self
     def find(number)
-      # @@trains.select {|train| number == train.number}[0]
-      m=0
-      @@trains.each {|train| m = train if number == train.number} 
-      m
+      @@trains.select {|train| number == train.number}[0]
+      #m=0
+      #@@trains.each {|train| m = train if number == train.number} 
+      #m
     end
   end
   def gather_speed
@@ -74,7 +74,9 @@ class Train
   def add_car(car)
     if @speed == 0
 	    validate_car!(car)
+      puts @cars
       @cars << car #if self.type == car.type
+      puts @cars
     end
   end
   def deduct_car(car)

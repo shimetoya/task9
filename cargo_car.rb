@@ -1,26 +1,26 @@
 class CargoCar < Car
-  @@count = 0
   def initialize(volume)
     @volume = volume
+    @take_volumes = 0
+    @@number += 1
   end
   def type
     :cargo
   end
   def take_volume(vol)
-    if @volume !=0
-      @volume -= vol
-      @@count += vol
+    if (@take_volumes + vol) < @volume && (@take_volumes + vol) > 0
+      @take_volumes += vol
     else
-      puts "No free volume"
+      puts "Error"
     end
   end
   def count_of_take_volumes
-    @@count
+    @take_volumes
   end
   def count_of_free_volumes
-    @volume
+    @volume - @take_volumes
   end
   def cars
-    puts "Тип вагона: #{@type}, количество свободного объема: #{@volume}, количество занятого объема: #{@@count}"
+    puts "Номер вагона: #{@@number}, тип вагона: #{self.type}, количество свободного объема: #{@volume - @take_volumes}, количество занятого объема: #{@take_volumes}"
   end
 end

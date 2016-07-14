@@ -1,6 +1,7 @@
 class RailwayStation
   attr_accessor :station
   attr_accessor :counte
+  attr_accessor :car
   @@count = []
   @@counter = 0
   def self.all
@@ -30,7 +31,7 @@ class RailwayStation
     @trains.delete(train)
   end
   def station_with_train
-    puts "Станция: #{@station}, поезд: #{@trains}"
+    puts "Станция: #{@station}, поезд: #{@trains}, вагон: #{@cars} "
   end
   def valid?
     validate!

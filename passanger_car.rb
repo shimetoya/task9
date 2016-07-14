@@ -1,27 +1,27 @@
 class PassangerCar < Car
   attr_accessor :cars
-  @@count = 0
   def initialize(seats)
     @seats = seats
+    @take_seats = 0
+    @@number += 1
   end
   def type
     :passanger
   end
   def take_place
-    if @seats != 0
-      @seats -= 1
-      @@count += 1
+    if @take_seats < @seats 
+      @take_seats += 1
     else
-      puts "No free places"
+      puts "Error"
     end
   end
   def count_of_take_places
-    @@count
+    @take_seats
   end
   def count_of_free_places
-    @seats
+    @seats - @take_seats
   end
   def cars
-    puts "Тип вагона: #{@type}, количество свободных мест: #{@seats}, количество занятых мест: #{@@count}"
+    puts "Номер вагона: #{@@number}, тип вагона: #{self.type}, количество свободных мест: #{@seats - @take_seats}, количество занятых мест: #{@take_seats}"
   end
 end

@@ -1,5 +1,6 @@
 class Car
   include Company
-  def initialize
+  @@number = 0
+  def initialize()
   end 
 end
