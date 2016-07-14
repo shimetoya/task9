@@ -1,5 +1,5 @@
 class Train
-  include Company
+  #include Company
   attr_accessor :type
   attr_accessor :number
   attr_accessor :amount

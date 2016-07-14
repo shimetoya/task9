@@ -4,8 +4,8 @@ class CargoTrain < Train
   attr_accessor :car
 
   def initialize(number)
+    super
     @number = number
-    @cars = []
   end
   def type
     :cargo

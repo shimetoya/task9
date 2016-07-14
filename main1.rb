@@ -1,14 +1,14 @@
 require_relative 'train'
 require_relative 'route'
-require_relative 'railwaystation'
-require_relative 'cargotrain'
-require_relative 'passangertrain'
+require_relative 'railway_station'
+require_relative 'cargo_train'
+require_relative 'passanger_train'
 require_relative 'car'
-require_relative 'passangercar'
-require_relative 'cargocar'
+require_relative 'passanger_car'
+require_relative 'cargo_car'
 
 trains = []
-cars = []
+@cars = []
 stations = []
 end_program = false
 while(!end_program)
@@ -51,14 +51,14 @@ when '3'
     puts "Введите объем вагона:"
     volume = gets.chomp
     car = CargoCar.new(volume)
+    @cars << car
     @train.add_car(car)
-    cars << car
   elsif @train.type == :passanger
     puts "Введите количество мест:"
     seats = gets.chomp
     car = PassangerCar.new(seats)
+    @cars << car
     @train.add_car(car)
-    cars << car
   else
     puts "Type's error!"
   end 
@@ -72,6 +72,8 @@ when '5'
   elsif type == 'c'
     @cur_station_index = 0
     @current_station = stations[@cur_station_index]
+    train = @train
+    @current_station.get_train(train)
     puts "Поезд № #{@train.number} типа: #{@train.type} находится на станции: #{@current_station.station}"  
   else
     puts "Unknown type"
@@ -86,20 +88,18 @@ when '7'
   puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{trains}"
 when '8'
   if car.type == :cargo
-    puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{cars}"
+    puts "Cписок всех вагонов на станции, находящиеся в текущий момент: #{@cars}"
   elsif car.type == :passanger
-    puts "Cписок всех поездов на станции, находящиеся в текущий момент: #{cars}"
+    puts "Cписок всех вагонов на станции, находящиеся в текущий момент: #{@cars}"
   else
     puts "Type's error!"
   end 
 when '9'
-  (RailwayStation.all).each do |station|
-  station.station_with_train
-  end
+  RailwayStation.station_with_train
 when '10'
   if car.type == :cargo
     puts "Введите объем вагона, который необходимо занять:"
-    vol = gets.chomp
+    vol = gets.to_i
     car.take_volume(vol)
   elsif @car.type == :passanger
     car.take_place

@@ -8,7 +8,7 @@ class CargoCar < Car
     :cargo
   end
   def take_volume(vol)
-    if (@take_volumes + vol) < @volume && (@take_volumes + vol) > 0
+    if (@take_volumes + vol.to_i) < @volume.to_i && (@take_volumes + vol.to_i) > 0
       @take_volumes += vol
     else
       puts "Error"
@@ -21,6 +21,6 @@ class CargoCar < Car
     @volume - @take_volumes
   end
   def cars
-    puts "Номер вагона: #{@@number}, тип вагона: #{self.type}, количество свободного объема: #{@volume - @take_volumes}, количество занятого объема: #{@take_volumes}"
+    puts "Номер вагона: #{@@number}, тип вагона: #{self.type}, количество свободного объема: #{@volume.to_i - @take_volumes}, количество занятого объема: #{@take_volumes}"
   end
 end

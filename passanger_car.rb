@@ -9,7 +9,7 @@ class PassangerCar < Car
     :passanger
   end
   def take_place
-    if @take_seats < @seats 
+    if @take_seats < @seats.to_i 
       @take_seats += 1
     else
       puts "Error"
@@ -22,6 +22,6 @@ class PassangerCar < Car
     @seats - @take_seats
   end
   def cars
-    puts "Номер вагона: #{@@number}, тип вагона: #{self.type}, количество свободных мест: #{@seats - @take_seats}, количество занятых мест: #{@take_seats}"
+    puts "Номер вагона: #{@@number}, тип вагона: #{self.type}, количество свободных мест: #{@seats.to_i - @take_seats}, количество занятых мест: #{@take_seats}"
   end
 end
