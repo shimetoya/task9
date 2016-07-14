@@ -19,11 +19,11 @@ car2 = PassangerCar.new(10)
 train2.add_car(car2)
 rail1.get_train(train2)
 
-puts car2.take_place
-puts car2.take_place
-puts car2.count_of_take_places
-puts car2.count_of_free_places
-puts car2.cars
+car2.take_place
+car2.take_place
+car2.count_of_take_places
+car2.count_of_free_places
+car2.cars
 
 
 train1 = CargoTrain.new('118-gF')
@@ -32,26 +32,12 @@ train1.add_car(car1)
 rail.get_train(train1)
 
 
-puts car1.take_volume(11)
-puts car1.count_of_take_volumes
-puts car1.count_of_free_volumes
-puts car1.cars
+car1.take_volume(11)
+car1.count_of_take_volumes
+car1.count_of_free_volumes
+car1.cars
 
-rail.each_train {|train| puts train}
-train2.each_car{|car| puts car}
+#rail.each_train {|train| puts train}
+#train2.each_car{|car| puts car}
 
-(RailwayStation.all).each do |station|
-  station.station_with_train
-  station.each_train do |train|
-    train.each_car do |car|
-      puts car.type
-      if car.type == :cargo
-        car.cars
-      elsif car.type == :passanger
-        car.cars
-      else
-        puts 'Error'
-      end 
-    end
-  end
-end
+RailwayStation.station_with_train

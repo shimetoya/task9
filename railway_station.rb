@@ -2,6 +2,7 @@ class RailwayStation
   attr_accessor :station
   attr_accessor :counte
   attr_accessor :car
+  attr_accessor :cars
   @@count = []
   @@counter = 0
   def self.all
@@ -30,8 +31,15 @@ class RailwayStation
   def sent_train(train)
     @trains.delete(train)
   end
-  def station_with_train
-    puts "Станция: #{@station}, поезд: #{@trains}, вагон: #{@cars} "
+    def each_car(&block)
+     @cars.each {|car| yield(car)}
+  end
+  def self.station_with_train
+    @@count.each do |station|
+      station.each_train do |train|
+        puts "Станция: #{station.station}, поезд: #{train.number}, #{train.type}, вагоны: #{@cars} "
+      end
+    end
   end
   def valid?
     validate!
