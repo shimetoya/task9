@@ -16,8 +16,12 @@ rail2 = RailwayStation.new('3 Station')
 
 train2 = PassangerTrain.new('242-FF')
 car2 = PassangerCar.new(10)
+puts car2
+puts train2.cars
 train2.add_car(car2)
 rail1.get_train(train2)
+puts car2
+puts train2.cars
 
 car2.take_place
 car2.take_place

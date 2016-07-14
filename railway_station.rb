@@ -36,8 +36,12 @@ class RailwayStation
   end
   def self.station_with_train
     @@count.each do |station|
+      puts "Станция: #{station.station}"
       station.each_train do |train|
-        puts "Станция: #{station.station}, поезд: #{train.number}, #{train.type}, вагоны: #{@cars} "
+        puts "поезд: #{train.number}, #{train.type}"
+        train.each_car do |car|
+          car.cars
+        end
       end
     end
   end
