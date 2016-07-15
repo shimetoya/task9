@@ -7,10 +7,10 @@ class CargoTrain < Train
     super
     @number = number
   end
+
   def type
     :cargo
   end
-  def cars
-    @cars
-  end
+
+  attr_reader :cars
 end
