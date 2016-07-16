@@ -47,7 +47,7 @@ class RailwayStation
       puts "Станция: #{station.station}"
       station.each_train do |train|
         puts "поезд: #{train.number}, #{train.type}"
-        train.each_car(&:cars)
+        train.each_car{ |car| puts car }
       end
     end
   end
