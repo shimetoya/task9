@@ -17,8 +17,6 @@ train2 = PassangerTrain.new('242-FF')
 car2 = PassangerCar.new(10)
 train2.add_car(car2)
 rail1.get_train(train2)
-puts car2
-puts train2
 
 car2.take_place
 car2.take_place
@@ -33,10 +31,7 @@ rail.get_train(train1)
 car1.take_volume(11)
 car1.count_of_take_volumes
 car1.count_of_free_volumes
-puts car1
-puts train2
 # rail.each_train {|train| puts train}
 # train2.each_car{|car| puts car}
 
 RailwayStation.station_with_train
-rail.to_s

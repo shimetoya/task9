@@ -42,12 +42,15 @@ class RailwayStation
     @cars.each { |car| yield(car) }
   end
 
+  def to_s
+    "Станция: #{station}, поезд: #{@train.number}, #{@train.type}"
+  end
+
   def self.station_with_train
     @@count.each do |station|
-      puts "Станция: #{station.station}"
+      puts station
       station.each_train do |train|
-        puts "поезд: #{train.number}, #{train.type}"
-        train.each_car{ |car| puts car }
+        train.each_car { |car| puts car }
       end
     end
   end

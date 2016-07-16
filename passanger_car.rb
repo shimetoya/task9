@@ -27,8 +27,10 @@ class PassangerCar < Car
   end
 
   def to_s
-    "Номер вагона: #{@@number}, тип вагона: #{type},
+    <<-HEREDOC
+    Номер вагона: #{@@number}, тип вагона: #{type},
     количество свободных мест: #{@seats - @take_seats},
-    количество занятых мест: #{@take_seats}"
+    количество занятых мест: #{@take_seats}
+    HEREDOC
   end
 end

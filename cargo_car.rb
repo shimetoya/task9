@@ -26,8 +26,10 @@ class CargoCar < Car
   end
 
   def to_s
-    "Номер вагона: #{@@number}, тип вагона: #{type}, количество
+    <<-HEREDOC
+    Номер вагона: #{@@number}, тип вагона: #{type}, количество
     свободного объема: #{@volume - @take_volumes}, количество
-    занятого объема: #{@take_volumes}"
+    занятого объема: #{@take_volumes}
+    HEREDOC
   end
 end
