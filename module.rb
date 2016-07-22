@@ -4,29 +4,38 @@ module Accessor
       var_name = "@#{name}".to_sym
       var_history = "@#{name}_history".to_sym
       define_method(name) { instance_variable_get(var_name) }
-      define_method("#{name}=".to_sym) do |value| 
-        instance_variable_set(var_name, value) 
-        array = [var_history]
-        array << var_name
+      define_method("#{name}=".to_sym) do |value|  
+        array = [instance_variable_get(var_history)]
+        array << value
+        instance_variable_set var_history, array
+        instance_variable_set(var_name, value)
       end
-      define_method(var_history) { print array }
+      define_method("#{name}_history".to_sym) {instance_variable_get(var_history)}
     end
   end
 
-  def strong_attr_acessor(*names, *names.class)
-    names.each do |name|
-      var_name = "@#{name}".to_sym
-      define_method(name) { instance_variable_get(var_name) }
-      define_method("#{name}=".to_sym) do |value| 
-        var_name.type == value.type ? instance_variable_set(var_name, value) : raise 'Variable types not identical'
-      end  
-      @@array << self
-    end
+  def strong_attr_acessor(name, class_name)
+    var_name = "@#{name}".to_sym
+    define_method(name) { instance_variable_get(var_name) }
+    define_method("#{name}=".to_sym) do |value|
+      class_name == value.class ? instance_variable_set(var_name, value) : raise('Variable types not identical')
+    end  
   end
 end
 
 class Test
   extend Accessor
   att_accessor_with_history :my_attr, :a, :b, :c
-#  strong_attr_acessor :s
+  strong_attr_acessor :s, Symbol
 end
+
+t = Test.new
+puts t
+t.a = 7
+t.a = 3
+puts t.a_history
+
+t.s = :d 
+puts t.s
+puts t.instance_variables
+puts t.instance_variable_get(:@s)
