@@ -1,12 +1,17 @@
 class Train
+  include Validation
   attr_accessor :type
   attr_accessor :number
   attr_accessor :amount
   attr_accessor :station
   attr_accessor :cars
+  
+  NUMBER_FORMAT = /^[a-z\d]{3}-?[a-z\d]{2}$/i
+
+  validate :number, :format, NUMBER_FORMAT
+
   @@trains = []
   @@counter = 0
-  NUMBER_FORMAT = /^[a-z\d]{3}-?[a-z\d]{2}$/i
   def initialize(number)
     @number = number
     @speed = 0
@@ -91,25 +96,5 @@ class Train
 
   def each_car
     @cars.each { |car| yield(car) }
-  end
-
-  def valid?
-    validate!
-  rescue
-    false
-  end
-
-  def validate!
-    raise 'Number has invalid format' if number !~ NUMBER_FORMAT
-    raise 'Number should be String' unless number.instance_of? String
-    true
-  end
-
-  protected
-
-  def validate_car!(car)
-    raise "Car can't be nil" if car.nil?
-    raise 'Wrong car type' if type != car.type
-    true
   end
 end
